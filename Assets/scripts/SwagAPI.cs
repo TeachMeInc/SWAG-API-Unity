@@ -7,7 +7,7 @@ using SimpleJSON;
 public class SwagAPI : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void SWAG_Init(string gameKey);
+    private static extern void SWAG_Init(string gameKey, string domObj);
 
     [DllImport("__Internal")]
     private static extern void SWAG_StartSession();
@@ -69,7 +69,7 @@ public class SwagAPI : MonoBehaviour
     public void InitSwag()
     {
         initBtn.SetActive(false);
-        SWAG_Init("5c6c3c056917a692f96f9651");
+        SWAG_Init("5c6c3c056917a692f96f9651", "swag");
         inited = true;
 
         StartSessionBtn.SetActive(true);
@@ -114,7 +114,7 @@ public class SwagAPI : MonoBehaviour
     public void ShowDialog()
     {
         if (inited)
-            SWAG_ShowDialog("scores", "level1", "Best ScoreS", "alltime", "");
+            SWAG_ShowDialog("scores", "Best Scores", "level1", "alltime", "default");
     }
 
     public void GetUserDatastore()
@@ -149,8 +149,10 @@ public class SwagAPI : MonoBehaviour
 
     public void EndGame()
     {
+        string data = "{ \"win\": true }";
+        Debug.Log("EndGame: " + data);
         if (inited)
-            SWAG_EndGame("{}");
+            SWAG_EndGame(data);
     }
 
     public void EndGameComplete()
@@ -175,25 +177,28 @@ public class SwagAPI : MonoBehaviour
             SWAG_GetScoreCategories();
     }
 
-    public void GetScoreCategoriesCompleted(string data)
+    public void GetScoreCategoriesComplete(string data)
     {
-        Debug.Log("GetScoreCategoriesCompleted " + data);
+        Debug.Log("GetScoreCategoriesComplete " + data);
     }
 
     public void GetScores()
     {
+        Debug.Log("GetScores");
+
         if (inited)
             SWAG_GetScores("level1", "standard", "alltime", 1, "2019-8-1", 0, "default");
     }
 
-    public void GetScoresCompleted(string data)
+    public void GetScoresComplete(string data)
     {
-        Debug.Log("GetScoresCompleted " + data);
+        Debug.Log("GetScoresComplete " + data);
     }
 
     public void IsSubscriber()
     {
-        SWAG_IsSubscriber();
+        if (inited)
+            SWAG_IsSubscriber();
     }
 
     public void IsSubscriberComplete(string data)
@@ -203,7 +208,8 @@ public class SwagAPI : MonoBehaviour
 
     public void HasDailyScore()
     {
-        SWAG_HasDailyScore();
+        if (inited)
+            SWAG_HasDailyScore();
     }
 
     public void HasDailyScoreComplete(string data)
@@ -213,7 +219,8 @@ public class SwagAPI : MonoBehaviour
 
     public void GetCurrentDay()
     {
-        SWAG_GetCurrentDay();
+        if (inited)
+            SWAG_GetCurrentDay();
     }
 
     public void GetCurrentDayComplete(string data)
