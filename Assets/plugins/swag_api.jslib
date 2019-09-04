@@ -1,8 +1,9 @@
 mergeInto(LibraryManager.library, {
 	swagApi: null,
 
-	SWAG_Init: function (gameKey, domObj) {
+	SWAG_Init: function (gameKey, domObj, platform) {
 	    var game = document.getElementById(Pointer_stringify (domObj));
+		platform = document.getElementById(Pointer_stringify (platform));
 		
 		if (game == undefined)	
 			alert ("SWAG_Init Game not found");
@@ -10,7 +11,7 @@ mergeInto(LibraryManager.library, {
 		swagApi = SWAGAPI.getInstance({
 			wrapper: game,
 			api_key: Pointer_stringify(gameKey),
-			theme: 'shockwave',
+			theme: platform,
 			debug: true
 		});
 	},

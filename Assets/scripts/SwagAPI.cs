@@ -7,7 +7,7 @@ using SimpleJSON;
 public class SwagAPI : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void SWAG_Init(string gameKey, string domObj);
+    private static extern void SWAG_Init(string gameKey, string domObj, string platform);
 
     [DllImport("__Internal")]
     private static extern void SWAG_StartSession();
@@ -69,7 +69,7 @@ public class SwagAPI : MonoBehaviour
     public void InitSwag()
     {
         initBtn.SetActive(false);
-        SWAG_Init("5c6c3c056917a692f96f9651", "swag");
+        SWAG_Init("5c6c3c056917a692f96f9651", "swag", "shockwave");
         inited = true;
 
         StartSessionBtn.SetActive(true);
