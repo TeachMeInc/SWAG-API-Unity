@@ -54,6 +54,15 @@ public class SwagAPI : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void SWAG_GetCurrentDay();
 
+    [DllImport("__Internal")]
+    private static extern void SWAG_GetAchievementCategories();
+
+    [DllImport("__Internal")]
+    private static extern void SWAG_PostAchievement(string achievement);
+
+    [DllImport("__Internal")]
+    private static extern void SWAG_GetUserAchievements();
+
     public GameObject initBtn;
     public GameObject StartSessionBtn;
 
@@ -227,4 +236,35 @@ public class SwagAPI : MonoBehaviour
     {
         Debug.Log("GetCurrentDayComplete " + data);
     }
+
+    public void GetAchievementCategories()
+    {
+        if (inited)
+            SWAG_GetAchievementCategories();
+    }
+
+    public void GetAchievementCategoriesComplete(string data)
+    {
+        Debug.Log("GetAchievementCategoriesComplete " + data);
+    }
+
+    public void PostAchievement()
+    {
+        if (inited)
+            SWAG_PostAchievement("achievement1");
+    }
+
+    public void GetUserAchievements()
+    {
+        if (inited)
+            SWAG_GetUserAchievements();
+    }
+
+    public void SWAG_GetUserAchievementsComplete(string data)
+    {
+        Debug.Log("SWAG_GetUserAchievementsComplete " + data);
+    }
+
+
+
 }

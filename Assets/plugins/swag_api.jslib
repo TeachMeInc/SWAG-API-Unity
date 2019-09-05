@@ -149,5 +149,27 @@ mergeInto(LibraryManager.library, {
 			.then(function(data) {
 				unityInstance.SendMessage('SwagObj', 'GetCurrentDayComplete', JSON.stringify (data));
 			});
-	}
+	},
+	
+	SWAG_GetAchievementCategories: function () {
+		swagApi.getAchievementCategories()
+			.then(function(data) {
+				unityInstance.SendMessage('SwagObj', 'GetAchievementCategoriesComplete', JSON.stringify (data));
+			});
+	},
+
+	SWAG_PostAchievement: function (achievement) {
+		swagApi.postAchievement(achievement);
+	},
+
+	SWAG_GetUserAchievements: function () {
+		console.log ("swagApi.getUserAchievements");
+		swagApi.getUserAchievements()
+			.then(function(data) {
+				console.log (data);
+				unityInstance.SendMessage('SwagObj', 'SWAG_GetUserAchievementsComplete', JSON.stringify (data));
+			});
+	},
+
+
 });
