@@ -23,6 +23,20 @@ mergeInto(LibraryManager.library, {
 			});
 	},
 
+	SWAG_ShowBrandingAnimation: function (devElement) {
+        SWAGAPI.showBrandingAnimation (devElement, function (){
+			unityInstance.SendMessage('SwagObj', 'BrandingAnimationShown');
+		});
+	},
+		
+	SWAG_HasBrandingAnimationShown: function () {
+		var data = "false";
+//		if (document.swagBrandingShown)
+//			data = "true;
+		
+		unityInstance.SendMessage('SwagObj', 'HasBrandingAnimationShownComplete', data);
+	},
+		
 	SWAG_PostScore: function (level_key, score) {
 		swagApi.postScore (Pointer_stringify(level_key), score);
 	},

@@ -63,6 +63,12 @@ public class SwagAPI : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void SWAG_GetUserAchievements();
 
+    [DllImport("__Internal")]
+    private static extern void SWAG_ShowBrandingAnimation(string devElement);
+
+    [DllImport("__Internal")]
+    private static extern void SWAG_HasBrandingAnimationShown();
+    
     public GameObject initBtn;
     public GameObject StartSessionBtn;
 
@@ -72,6 +78,13 @@ public class SwagAPI : MonoBehaviour
     void Start()
     {
         StartSessionBtn.SetActive(false);
+
+        HasBrandingAnimationShown ();
+    }
+
+    void Update()
+    {
+
     }
 
     // Update is called once per frame
@@ -265,6 +278,23 @@ public class SwagAPI : MonoBehaviour
         Debug.Log("SWAG_GetUserAchievementsComplete " + data);
     }
 
+    public void ShowBrandingAnimation(string devElement)
+    {
+        SWAG_ShowBrandingAnimation(devElement);
+    }
 
+    public void BrandingAnimationShown()
+    {
+        Debug.Log("BrandingAnimationShown");
+    }
 
+    public void HasBrandingAnimationShown()
+    {
+        SWAG_HasBrandingAnimationShown();
+    }
+
+    public void HasBrandingAnimationShownComplete()
+    {
+        Debug.Log("HasBrandingAnimationShownComplete");
+    }
 }
