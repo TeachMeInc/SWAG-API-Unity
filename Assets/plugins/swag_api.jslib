@@ -24,15 +24,17 @@ mergeInto(LibraryManager.library, {
 	},
 
 	SWAG_ShowBrandingAnimation: function (devElement) {
-        SWAGAPI.showBrandingAnimation (devElement, function (){
+		document.swagBrandingShown = 0;
+        SWAGAPI.showBrandingAnimation (Pointer_stringify(devElement), function (){
 			unityInstance.SendMessage('SwagObj', 'BrandingAnimationShown');
+			document.swagBrandingShown = 1;
 		});
 	},
 		
 	SWAG_HasBrandingAnimationShown: function () {
 		var data = "false";
-//		if (document.swagBrandingShown)
-//			data = "true;
+		if (document.swagBrandingShown)
+			data = "true";
 		
 		unityInstance.SendMessage('SwagObj', 'HasBrandingAnimationShownComplete', data);
 	},
