@@ -149,13 +149,13 @@ mergeInto(LibraryManager.library, {
 			});
 	},
 
-	SWAG_HasDailyScore: function () {
-		swagApi.hasDailyScore()
-			.then(function(score) {
+	SWAG_HasDailyScore: function (level_key) {
+		level_key = Pointer_stringify(level_key);
+		swagApi.hasDailyScore(level_key)
+			.then(function(hasScore) {
 				var data = {
-					score: score
+					dailyScore: hasScore
 				};
-				
 				unityInstance.SendMessage('SwagObj', 'HasDailyScoreComplete', JSON.stringify (data));
 			});
 	},

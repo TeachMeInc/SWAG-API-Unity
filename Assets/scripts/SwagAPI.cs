@@ -49,7 +49,7 @@ public class SwagAPI : MonoBehaviour
     private static extern void SWAG_IsSubscriber();
 
     [DllImport("__Internal")]
-    private static extern void SWAG_HasDailyScore();
+    private static extern void SWAG_HasDailyScore(string level_key);
 
     [DllImport("__Internal")]
     private static extern void SWAG_GetCurrentDay();
@@ -231,7 +231,7 @@ public class SwagAPI : MonoBehaviour
     public void HasDailyScore()
     {
         if (inited)
-            SWAG_HasDailyScore();
+            SWAG_HasDailyScore("level1");
     }
 
     public void HasDailyScoreComplete(string data)
