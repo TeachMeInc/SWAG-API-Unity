@@ -1,6 +1,10 @@
 # SWAG API - Unity Plugin & Example
 
-This example shows how to use the SWAG API with Unity. See [SwagAPI.cs](https://github.com/TeachMeInc/SWAG-API-Unity/blob/2021.3.3f/Assets/Plugins/WebGL/SwagAPI.cs) for a list of available methods.
+This example shows how to use the SWAG API with Unity. 
+
+See [SwagAPI.cs](https://github.com/TeachMeInc/SWAG-API-Unity/blob/2021.3.3f/Assets/Plugins/WebGL/SwagAPI.cs) for a list of available plugin methods.
+
+See [this PDF](https://github.com/TeachMeInc/SWAG-API-Unity/blob/2021.3.3f/SwagAPI/swag-api-developers%202.0.9.pdf) for more comprehensive documentation. (subject to change)
 
 An end-to-end example can be found in this repository in the SampleScene scene.
 
