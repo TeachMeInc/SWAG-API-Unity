@@ -87,11 +87,14 @@ public class SwagAPI : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    public string APIKey = "5c6c3c056917a692f96f9651";
+    public string DOMElementID = "swag";
+    public string Platform = "shockwave";
+
     public void InitSwag()
     {
         initBtn.SetActive(false);
-        SWAG_Init("5c6c3c056917a692f96f9651", "swag", "shockwave");
+        SWAG_Init(this.APIKey, this.DOMElementID, this.Platform);
         inited = true;
 
         StartSessionBtn.SetActive(true);
