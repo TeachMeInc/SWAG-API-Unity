@@ -3,37 +3,58 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | %UNITY_WEB_NAME%</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>
-    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
-    <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "%UNITY_WEBGL_BUILD_URL%", {onProgress: UnityProgress});
-    </script>
-	
-	<script type="text/javascript" src="https://swagapi.shockwave.com/dist/swag-api.js"></script>   
-	<link rel="stylesheet" type="text/css" href="https://swagapi.shockwave.com/dist/swag-api.css"></link>
+    <title>Unity WebGL Player | {{{ PRODUCT_NAME }}}</title>
+    <script type="text/javascript" src="https://swagapi.shockwave.com/dist/swag-api.js"></script>   
+    <link rel="stylesheet" type="text/css" href="https://swagapi.shockwave.com/dist/swag-api.css"></link>
   </head>
-  <body>
-	<div id="webgl" class="webgl-content">
-		<div id="swag">
-<!--		  <div id="unityContainer" style="width: %UNITY_WIDTH%px; height: %UNITY_HEIGHT%px"></div>-->
-		  <div id="unityContainer" style="width: 100%; height: 100%; padding: 0px; margin: 0px; border: 0px; position: relative; background: rgb(35, 31, 32);"></div>
-		  <div class="footer">
-			<div class="webgl-logo"></div>
-			<div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-			<div class="title">%UNITY_WEB_NAME%</div>
-		  </div>
-		</div>
-	</div>
+  <body style="text-align: center">
+    <div id="webgl" class="webgl-content">
+      <div id="swag">
+        <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} style="width: {{{ WIDTH }}}px; height: {{{ HEIGHT }}}px; background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
+        <div class="footer">
+          <div class="webgl-logo"></div>
+          <div class="fullscreen" onclick="unityInstance && unityInstance.SetFullscreen(1)"></div>
+          <div class="title">{{{ PRODUCT_NAME }}}</div>
+        </div>
+      </div>
+    </div>
+    <script src="Build/{{{ LOADER_FILENAME }}}"></script>
+    <script>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+      }
 
-	<script>
-		document.swagBrandingShown = 0;
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+#endif
+#if MEMORY_FILENAME
+        memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      })
+      .then((unityInstance) => {
+        window.unityInstance = unityInstance;
 
-		SWAGAPI.showBrandingAnimation('webgl', function (){
-//			document.swagBrandingShown = 1;
-		});
-	</script>
+        document.swagBrandingShown = 0;
+        SWAGAPI.showBrandingAnimation('webgl', function (){
+          document.swagBrandingShown = 1;
+        });
+      })
+    </script>
   </body>
 </html>
