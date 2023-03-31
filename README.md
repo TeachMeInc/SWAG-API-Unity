@@ -28,12 +28,14 @@ Just before the closing `</head>` tag:
 
 Just after the opening `<body>` tag (replacing the existing `<canvas>` tag):
 ```html
-<div id="swag">
-  <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} style="width: {{{ WIDTH }}}px; height: {{{ HEIGHT }}}px; background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
-  <div class="footer">
-    <div class="webgl-logo"></div>
-    <div class="fullscreen" onclick="unityInstance && unityInstance.SetFullscreen(1)"></div>
-    <div class="title">{{{ PRODUCT_NAME }}}</div>
+<div id="webgl" class="webgl-content">
+  <div id="swag">
+    <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} style="width: {{{ WIDTH }}}px; height: {{{ HEIGHT }}}px; background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
+    <div class="footer">
+      <div class="webgl-logo"></div>
+      <div class="fullscreen" onclick="unityInstance && unityInstance.SetFullscreen(1)"></div>
+      <div class="title">{{{ PRODUCT_NAME }}}</div>
+    </div>
   </div>
 </div>
 ```

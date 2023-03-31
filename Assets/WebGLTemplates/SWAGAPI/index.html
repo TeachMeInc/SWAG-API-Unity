@@ -8,12 +8,14 @@
     <link rel="stylesheet" type="text/css" href="https://swagapi.shockwave.com/dist/swag-api.css"></link>
   </head>
   <body style="text-align: center">
-    <div id="swag">
-      <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} style="width: {{{ WIDTH }}}px; height: {{{ HEIGHT }}}px; background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance && unityInstance.SetFullscreen(1)"></div>
-        <div class="title">{{{ PRODUCT_NAME }}}</div>
+    <div id="webgl" class="webgl-content">
+      <div id="swag">
+        <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} style="width: {{{ WIDTH }}}px; height: {{{ HEIGHT }}}px; background: {{{ BACKGROUND_FILENAME ? 'url(\'Build/' + BACKGROUND_FILENAME.replace(/'/g, '%27') + '\') center / cover' : BACKGROUND_COLOR }}}"></canvas>
+        <div class="footer">
+          <div class="webgl-logo"></div>
+          <div class="fullscreen" onclick="unityInstance && unityInstance.SetFullscreen(1)"></div>
+          <div class="title">{{{ PRODUCT_NAME }}}</div>
+        </div>
       </div>
     </div>
     <script src="Build/{{{ LOADER_FILENAME }}}"></script>
