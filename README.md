@@ -90,5 +90,5 @@ http://local.shockwave.com:8888
 ## Other Notes
 
 1. The SWAG API is provided via a JSLIB external plugin. There is currently a quirk in Unity which prevents the plugin from working in editor mode, so you will need to build your project to test SWAG API features in your game.
-2. SWAG API calls are secured via CORS and as such will only work properly in dev mode when coming from `local.addictinggames.com` or `local.shockwave.com` on ports 3000 or 8080. You will need to add these to your HOSTS file and run your game using an external web server to get passed CORS restrictions (ie Unity's "Build and Run" won't work for testing SWAG API features).
+2. SWAG API calls are secured via CORS and as such will only work properly in dev mode when coming from `local.addictinggames.com` or `local.shockwave.com` on port 8888. You will need to add these to your HOSTS file and run your game using an external web server to get passed CORS restrictions (ie Unity's "Build and Run" won't work for testing SWAG API features).
 
